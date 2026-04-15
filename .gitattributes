@@ -1,0 +1,2 @@
+serialized_data/hmda_*.json filter=lfs diff=lfs merge=lfs -text
+serialized_data/*.json filter=lfs diff=lfs merge=lfs -text
