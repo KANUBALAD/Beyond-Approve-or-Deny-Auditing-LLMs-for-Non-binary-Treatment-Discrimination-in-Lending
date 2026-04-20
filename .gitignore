@@ -1,4 +1,5 @@
 *.csv
+*.json
 data/*.csv
 datasets/*.csv
 __pycache__/
