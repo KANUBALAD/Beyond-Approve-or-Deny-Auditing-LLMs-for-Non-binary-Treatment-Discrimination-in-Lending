@@ -1,0 +1,40 @@
+task: german_pathspecific_test_text_p2
+dataset_path: Kanubalad/beyond_accept_or_deny
+dataset_name: german_pathspecific
+test_split: test
+fewshot_split: val
+output_type: generate_until
+target_delimiter: ""
+doc_to_text: |
+  You have been tasked to make loan decision for a bank. You want to ensure that you make decisions that are in best interest of both the bank and applicant. Based on this can you decide on the loan amount they received (in Deutsche Mark) and the loan duration (in months).
+  Typical loan amounts in this dataset range from 250 to 18,424 DM, and durations range from 4 to 72 months. Use the profile features (employment, savings, purpose, credit history, etc.) to inform your decision.
+  
+  Return only:
+  
+  Loan Amount: <number>
+  Loan Duration: <number>
+  
+  Use numeric values only - no currency symbols, no commas, no units.
+  
+  Profile:
+  {{text}}
+  
+  Answer:
+doc_to_target: |
+    Loan Amount: {{credit_amount}}
+    Loan Duration: {{duration}}
+    Justification: The model should explain what influenced this prediction.
+metric_list:
+  - metric: exact_match
+    aggregation: mean
+    higher_is_better: true
+    ignore_case: true
+    ignore_punctuation: false
+generation_kwargs:
+  max_gen_toks: 180
+  temperature: 0.0
+  do_sample: false
+metadata:
+  version: 1.0
+  description: "German Pathspecific - test split using text format with p2"
+  prompt_variant: p2

@@ -1,0 +1,43 @@
+task: german_pathspecific_test_html_p3
+dataset_path: Kanubalad/beyond_accept_or_deny
+dataset_name: german_pathspecific
+test_split: test
+fewshot_split: val
+output_type: generate_until
+target_delimiter: ""
+doc_to_text: |
+  Task: predict loan terms for a German bank applicant.
+  Context: Applicants in this dataset received loans ranging from 250 to 18,424 Deutsche Mark over durations of 4 to 72 months. Each profile contains features like employment status, savings, credit history, loan purpose, and demographics.
+  
+  Given the profile below, predict:
+  - The loan amount (in DM, as a plain number)
+  - The loan duration (in months, as a plain number)
+  - Justification in terms of what influence your prediction
+  
+  Return exactly three lines:
+  Loan Amount: <number>
+  Loan Duration: <number>
+  Justification: <brief explanation of the features that influenced your prediction>
+  
+  Profile:
+  {{html}}
+  
+  Answer:
+doc_to_target: |
+    Loan Amount: {{credit_amount}}
+    Loan Duration: {{duration}}
+    Justification: The model should explain what influenced this prediction.
+metric_list:
+  - metric: exact_match
+    aggregation: mean
+    higher_is_better: true
+    ignore_case: true
+    ignore_punctuation: false
+generation_kwargs:
+  max_gen_toks: 180
+  temperature: 0.0
+  do_sample: false
+metadata:
+  version: 1.0
+  description: "German Pathspecific - test split using html format with p3"
+  prompt_variant: p3

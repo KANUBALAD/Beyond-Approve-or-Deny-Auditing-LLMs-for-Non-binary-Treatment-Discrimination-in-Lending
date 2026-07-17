@@ -1,0 +1,38 @@
+task: german_counterfactual_test_text_p1
+dataset_path: Kanubalad/beyond_accept_or_deny
+dataset_name: german_counterfactual
+test_split: test
+fewshot_split: val
+output_type: generate_until
+target_delimiter: ""
+doc_to_text: |
+  You are an expert in loan analysis. Below is the profile of an applicant who was approved for a loan from a German bank. Based on the profile, predict the loan amount (in Deutsche Mark) and loan duration (in months) that this applicant received.
+  
+  Loan amounts in this dataset range from 250 to 18,424 Deutsche Mark, and durations range from 4 to 72 months.
+  Return only the following two lines, with numeric values and no units, symbols, or commas:
+  
+  Loan Amount: <number>
+  Loan Duration: <number>
+  
+  Profile:
+  {{text}}
+  
+  Answer:
+doc_to_target: |
+    Loan Amount: {{credit_amount}}
+    Loan Duration: {{duration}}
+    Justification: The model should explain what influenced this prediction.
+metric_list:
+  - metric: exact_match
+    aggregation: mean
+    higher_is_better: true
+    ignore_case: true
+    ignore_punctuation: false
+generation_kwargs:
+  max_gen_toks: 180
+  temperature: 0.0
+  do_sample: false
+metadata:
+  version: 1.0
+  description: "German Counterfactual - test split using text format with p1"
+  prompt_variant: p1
