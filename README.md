@@ -4,23 +4,14 @@
 
 This project goal is to audit large language models (LLMs) to measure and mitigate non-binary treatment discrimination. This audit of of extreme importance as different LLMs in recent times have been stressed tested in making decisions in different critical domains. However, the use of the LLMs in lending has mostly framed it as a simple binary decision making process of either granting a loan or not.This way of stress testing might obscures the limitations that LLMs might have in terms of the decisions they make for lending. 
 
-The repo contains the code for data processsing, serializations, and experimental setup.
+## Quick start
+* To asseess the .sh it is in `lm-evaluation-harness/lm-eval/run_finance.sh`
+* In the main results_data folder you would find the data which we would use to analyze. They have been organized based on the different models and inside each of them you find the few shots examples.
+* The results summary notebook contains the analysis i have done and included the kde plots we currently have.
+* The folder `/new_finance` folder contains the generated .yaml files for the experiments.
+* The zip `lm-evaluation-harness` contains the cloned repository from the Language Model Evaluation Harness project. Unzip the file after cloning it.
 
-## Repository layout
-- README.md — this file
-- data/ — raw and processed datasets (do not include sensitive data)
-- notebooks/ — analysis and reproducible experiments
-- src/ — core code: data processing, model wrappers, evaluation
 
-Quick start
-1. Create virtual environment and install
-    - python -m venv .venv
-    - source .venv/bin/activate
-    - pip install -r requirements.txt
-2. Prepare data
-    - Place raw datasets into ./data
-3. Run an experiment (example)
-4. Evaluate results
 
 ## Contact & citation
 - Author: INCLUDE LATER
